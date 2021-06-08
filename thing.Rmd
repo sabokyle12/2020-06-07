@@ -1,5 +1,5 @@
 ---
-title: "thing"
+title: "Police Data"
 author: "Kyle Sabo"
 date: "6/7/2021"
 output: html_document
@@ -11,7 +11,7 @@ library(tidyverse)
 ```
 
 
-```{r}
+```{r, include=FALSE}
 x <- read_csv("https://raw.githubusercontent.com/Financial-Times/police-misconduct-complaints-analysis/main/output/philly_clean.csv")
 
 clean_data <- x %>%
@@ -21,12 +21,15 @@ clean_data <- x %>%
   arrange(desc(total)) %>%
   mutate(officer_id = as.character(officer_id)) %>%
   slice(1:10)
-clean_data
-ggplot(data = clean_data,
-  mapping = aes(x = officer_id, y = total)) +
-  geom_col() 
   
 
 ```
+
+```{r}
+ggplot(data = clean_data,
+  mapping = aes(x = officer_id, y = total)) +
+  geom_col() 
+```
+
 
 
